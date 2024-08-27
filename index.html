@@ -56,7 +56,7 @@
         scene.add(hemiLight);
 
         // Camera position
-        camera.position.set(0, 5, 20);
+        camera.position.set(0, 6, 17);
 
         // Store mixers and selectable objects
         const mixers = [];
@@ -67,14 +67,14 @@
             const loader = new THREE.GLTFLoader();
             loader.load(modelUrl, function (gltf) {
                 const model = gltf.scene;
-                
+
                 model.scale.set(1.5, 1, 1.7);
 
                 // Calculate position based on index
                 const row = Math.floor(index / 7);
                 const col = index % 7;
-                model.position.set(col * 4 - 12, row * 4 - 10, 0); // Adjust spacing and origin
-                
+                model.position.set(col * 5 - 15, -row * 5 + 10, 0); // Adjust spacing and origin
+
                 scene.add(model);
                 objects.push(model); // Add to objects array
 
@@ -91,7 +91,7 @@
             });
         }
 
-        // Load all models in a 6x7 grid
+        // Alphabetically sorted model URLs
         const modelUrls = [
             'https://raw.githubusercontent.com/LiztiAthy/Hand/main/3dHand/Ahand/Ahand.gltf',
             'https://raw.githubusercontent.com/LiztiAthy/Hand/main/3dHand/Bhand/Bhand.gltf',
@@ -120,6 +120,9 @@
             'https://raw.githubusercontent.com/LiztiAthy/Hand/main/3dHand/Yhand/Yhand.gltf',
             'https://raw.githubusercontent.com/LiztiAthy/Hand/main/3dHand/Zhand/Zhand.gltf'
         ];
+
+        // Sort the model URLs alphabetically
+        modelUrls.sort();
 
         modelUrls.forEach((url, index) => loadModel(url, index));
 
